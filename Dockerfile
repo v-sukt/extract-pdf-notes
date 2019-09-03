@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 
 ADD extract_pdf_notes.py /usr/bin/extract_pdf_notes
 RUN apt update && \
-    apt install --quiet -y --no-install-recommends python3-poppler-qt5  && \
+    apt install --quiet -y --no-install-recommends python3-poppler-qt5 locales && \
     apt-get clean && \
     chmod a+x /usr/bin/extract_pdf_notes && \
     rm -rf \
