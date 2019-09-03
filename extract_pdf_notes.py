@@ -6,6 +6,7 @@ import PyQt5
 
 resolution = 150
 
+
 def main():
 
     doc = popplerqt5.Poppler.Document.load(sys.argv[1])
@@ -26,7 +27,7 @@ def main():
                 if isinstance(annotation, popplerqt5.Poppler.Annotation):
                     total_annotations += 1
                     
-                    if (isinstance(annotation, popplerqt5.Poppler.HighlightAnnotation)):
+                    if isinstance(annotation, popplerqt5.Poppler.HighlightAnnotation):
                         quads = annotation.highlightQuads()
                         txt = ""
                         for quad in quads:
@@ -40,8 +41,8 @@ def main():
 
                         #print("========= ANNOTATION =========")
                         print(txt)
-                        if annotation.contents(): 
-                        	print("\t - {}".format(annotation.contents()))
+                        if annotation.contents():
+                            print("\t - {}".format(annotation.contents()))
                         
                     if isinstance(annotation, popplerqt5.Poppler.GeomAnnotation):
                         count += 1
@@ -59,17 +60,18 @@ def main():
                         
                         page.renderToImage(resolution, resolution, bdy.left(), bdy.top(), bdy.width(), bdy.height()).save("page{}_image{}.png".format(i, count))
                         print("page{}_image{}.png".format(i, count))
-                        if annotation.contents(): 
-                        	print(annotation.contents())
+                        if annotation.contents():
+                            print("\t - {}".format(annotation.contents()))
                         
                     if isinstance(annotation, popplerqt5.Poppler.TextAnnotation):
-                        if annotation.contents(): 
-                        	print(annotation.contents())
+                        if annotation.contents():
+                            print("\t - {}".format(annotation.contents()))
 
     if total_annotations > 0:
         pass
     else:
         print ("no annotations found")
+
 
 if __name__ == "__main__":
     main()
