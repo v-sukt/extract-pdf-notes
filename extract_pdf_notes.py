@@ -10,6 +10,10 @@ resolution = 150
 def main():
 
     doc = popplerqt5.Poppler.Document.load(sys.argv[1])
+    if not doc:
+        print("Failed to load the file. Check if the provided document is valid PDF - \t[{}]".format(sys.argv[1]))
+        sys.exit(1)
+
     print(sys.argv[1])
     total_annotations = 0
 
@@ -58,8 +62,8 @@ def main():
                             bounds.height()*height
                         )
                         
-                        page.renderToImage(resolution, resolution, bdy.left(), bdy.top(), bdy.width(), bdy.height()).save("page{}_image{}.png".format(i, count))
-                        print("page{}_image{}.png".format(i, count))
+                        page.renderToImage(resolution, resolution, bdy.left(), bdy.top(), bdy.width(), bdy.height()).save("{}_page{}_image{}.png".format(sys.argv[1], i, count))
+                        print("{}_page{}_image{}.png".format(sys.argv[1], i, count))
                         if annotation.contents():
                             print("\t - {}".format(annotation.contents()))
                         

@@ -117,7 +117,7 @@ To use my latest docker-image from the dockerhub. This one is easiest among the 
 * Assuming that you have a pdf Sample Book.pdf in the current directory
     * Start the container from the image as follows
         ```
-        docker run -v "${PWD}":/notes vsukt/extract_pdf_notes:latest "Sample Book.pdf"
+        docker run -v "${PWD}":/notes --user $(id -u):$(id -u)  vsukt/extract_pdf_notes:latest "Sample Book.pdf"
         ```
     * This will mount the current directory inside the container as /notes (which is working directory of the container)
     
@@ -132,7 +132,7 @@ To use my latest docker-image from the dockerhub. This one is easiest among the 
         
     * You can save the text output by redirecting it to another file e.g.
         ```
-        docker run -v "${PWD}":/notes vsukt/extract_pdf_notes:latesr "Sample Book.pdf" >"Sample Book.txt"
+        docker run -v "${PWD}":/notes --user $(id -u):$(id -u) vsukt/extract_pdf_notes:latest "Sample Book.pdf" >"Sample Book.txt"
         ```
 
 
