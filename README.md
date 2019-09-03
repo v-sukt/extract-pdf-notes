@@ -47,8 +47,8 @@ Here you have following ways to execute the script
 		```
     * This will mount the current directory inside container as /notes (which is working directory of the container)
     * The name of pdf will be argument to the script which will start printing highlighted text on commandline
-        - Text annotations/comments
-        - Highlights/Underline/Strike through. etc
+        - Text annotations/Typewriter/Comments
+        - Highlights/Underline/Strikeout. etc
     * It will also print name of the image file as a part of output text and will create a PNG file for any Geometric annotations
         
         This can be useful to extact image files from the pdf 
@@ -105,11 +105,35 @@ This method uses Vagrantfile for creating a VM for you. Which will also mount cu
         python3 extract_pdf_noptes.py "Sample Book.pdf" >"Sample Book.txt"
         ```
 
-
  
- 
-## Using docker image
-I am uploading the image to DockerHub. Will post the usage after that.
+## Using online docker image 
+To use my latest docker-image from the dockerhub. This one is easiest among the available methods.
+
+### Requirements
+* You need Docker installed and running on the system (link to install provided above)   
+
+### Usage
+* Navigate to the directory with the highlighted pdf. 
+* Assuming that you have a pdf Sample Book.pdf in the current directory
+    * Start the container from the image as follows
+        ```
+        docker run -v "${PWD}":/notes vsukt/extract_pdf_notes:latest "Sample Book.pdf"
+        ```
+    * This will mount the current directory inside the container as /notes (which is working directory of the container)
+    
+    * The name of pdf will be an argument to the script which will start printing highlighted text on the command line
+            - Text annotations/Typewriter/Comments
+            - Highlights/Underline/Strikeout. etc
+
+    * It will also print the name of the image file as a part of output text and will create PNG files for any Geometric annotations
+        > This can be useful to extract image files from the pdf - you cna then insert these images where you'll be keeping your final notes.
+
+        *NOTE*: Current resolution is `150p`. If you want to change it, use the local docker image method mentioned above
+        
+    * You can save the text output by redirecting it to another file e.g.
+        ```
+        docker run -v "${PWD}":/notes vsukt/extract_pdf_notes:latesr "Sample Book.pdf" >"Sample Book.txt"
+        ```
 
 
-Hope this was useful.
+Hope this was useful !!
