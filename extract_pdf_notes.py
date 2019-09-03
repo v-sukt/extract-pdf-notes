@@ -39,9 +39,9 @@ def main():
                             txt = txt + str(page.text(bdy)) + ' '
 
                         #print("========= ANNOTATION =========")
-                        sys.stdout(txt.encode('utf-8').decode('utf-8'))
+                        print(txt)
                         if annotation.contents(): 
-                        	sys.stdout("\t - {}".format(annotation.contents()))
+                        	print("\t - {}".format(annotation.contents()))
                         
                     if isinstance(annotation, popplerqt5.Poppler.GeomAnnotation):
                         count += 1
