@@ -1,5 +1,7 @@
 # extract-pdf-notes
-![docker build](https://img.shields.io/docker/cloud/automated/vsukt/extract_pdf_notes) ![docker build](https://img.shields.io/docker/cloud/build/vsukt/extract_pdf_notes)
+
+![docker build](https://img.shields.io/docker/cloud/automated/vsukt/extract_pdf_notes)
+![docker build](https://img.shields.io/docker/cloud/build/vsukt/extract_pdf_notes)
 
 
 Often times we read technical/non-technical books and do lot of highlighting on it, even add some notes like meaning of some new word or out opinion about the text. I was searching for way to getting the notes out of the PDF - there are so many options
