@@ -24,6 +24,43 @@ Here you have following ways to execute the script
 * Using docker image 
 * Creating your own VM using Vagrantfile and then using the script
 
+ 
+## Using online docker image 
+To use my latest docker-image from the dockerhub. This one is easiest among the available methods.
+
+### Requirements
+* You need Docker installed and running on the system (link to install provided above)   
+
+### Usage
+* Navigate to the directory with the highlighted pdf. 
+* Or with docker commands, (Assuming that you have a pdf Sample Book.pdf in the current directory)
+    * Start the container from the image as follows
+        ```
+        docker run -v "${PWD}":/notes --user $(id -u):$(id -u)  vsukt/extract_pdf_notes:latest "Sample Book.pdf"
+        ```
+    * This will mount the current directory inside the container as /notes (which is working directory of the container)
+    
+    * The name of pdf will be an argument to the script which will start printing highlighted text on the command line
+            - Text annotations/Typewriter/Comments
+            - Highlights/Underline/Strikeout. etc
+
+    * It will also print the name of the image file as a part of output text and will create PNG files for any Geometric annotations
+        > This can be useful to extract image files from the pdf - you cna then insert these images where you'll be keeping your final notes.
+
+        *NOTE*: Current resolution is `150p`. If you want to change it, use the local docker image method mentioned above
+        
+    * You can save the text output by redirecting it to another file e.g.
+        ```
+        docker run -v "${PWD}":/notes --user $(id -u):$(id -u) vsukt/extract_pdf_notes:latest "Sample Book.pdf" >"Sample Book.txt"
+        ```
+* or just grab the extract_notes.sh and execute it with PDF file name as argument.  
+    ```bash
+    mkdir -p ~/.local/bin
+    curl -sSL https://raw.githubusercontent.com/v-sukt/extract-pdf-notes/master/extract_notes.sh -o ~/.local/bin/extract_notes && chmod a+x ~/.local/bin/extract_notes
+    echo $PATH | grep ~/.local/bin > /dev/null || echo "export PATH=$HOME/.local/bin:$PATH" >> ~/.bashrc && source ~/.bashrc
+    extract_notes "Sample File.pdf"
+    ```
+    It'll create a local directory with filename_Notes and keep all your notes in there. If you get `bash: curl: command not found` then you'll have to install `curl` or use `wget` instead of curl.
 
 ## Using local docker image
 
@@ -31,7 +68,7 @@ Here you have following ways to execute the script
 * docker installed and running (https://docs.docker.com/install/)
 
 ### Building the local image
-* clone the repo and change to repo directory
+* clone the repo (https://www.github.com/v-sukt/extract-pdf-notes) and change to repo directory
 * then execute
 	```
 	docker build -t extract_pdf_notes:0.6 .
@@ -59,7 +96,7 @@ Here you have following ways to execute the script
         ```
         docker run -v "${PWD}":/notes extract_notes:0.6 "Sample Book.pdf" >"Sample Book.txt"
         ```
- 
+
 
 ## Using local VM (Vagrant+Virtualbox)
 This method uses Vagrantfile for creating a VM for you. Which will also mount current directory inside VM at /vagrant - where you can extract your notes by placing the file in it.
@@ -69,7 +106,7 @@ This method uses Vagrantfile for creating a VM for you. Which will also mount cu
 * VirtualBox (https://www.virtualbox.org/wiki/Downloads) or any other provider support by Vagrant (https://www.vagrantup.com/docs/providers/)
 
 ### Starting the VM
-* Clone the repo and change to repo directory
+* Clone the repo (https://www.github.com/v-sukt/extract-pdf-notes) and change to repo directory
 * Then execute
 	```
 	vagrant up --provision
@@ -96,7 +133,7 @@ This method uses Vagrantfile for creating a VM for you. Which will also mount cu
 
     * It will also print name of the image file as a part of output text and will create a PNG file for any Geometric annotations
         
-        This can be useful to extact image files from the pdf 
+        This can be useful to extract image files from the pdf 
         
         NOTE: Current resolution is 150p. If you want to change it change the variable `resolution` in `extract_pdf_notes.py` file)
      
@@ -104,36 +141,6 @@ This method uses Vagrantfile for creating a VM for you. Which will also mount cu
         ```
         python3 extract_pdf_noptes.py "Sample Book.pdf" >"Sample Book.txt"
         ```
-
- 
-## Using online docker image 
-To use my latest docker-image from the dockerhub. This one is easiest among the available methods.
-
-### Requirements
-* You need Docker installed and running on the system (link to install provided above)   
-
-### Usage
-* Navigate to the directory with the highlighted pdf. 
-* Assuming that you have a pdf Sample Book.pdf in the current directory
-    * Start the container from the image as follows
-        ```
-        docker run -v "${PWD}":/notes --user $(id -u):$(id -u)  vsukt/extract_pdf_notes:latest "Sample Book.pdf"
-        ```
-    * This will mount the current directory inside the container as /notes (which is working directory of the container)
     
-    * The name of pdf will be an argument to the script which will start printing highlighted text on the command line
-            - Text annotations/Typewriter/Comments
-            - Highlights/Underline/Strikeout. etc
-
-    * It will also print the name of the image file as a part of output text and will create PNG files for any Geometric annotations
-        > This can be useful to extract image files from the pdf - you cna then insert these images where you'll be keeping your final notes.
-
-        *NOTE*: Current resolution is `150p`. If you want to change it, use the local docker image method mentioned above
-        
-    * You can save the text output by redirecting it to another file e.g.
-        ```
-        docker run -v "${PWD}":/notes --user $(id -u):$(id -u) vsukt/extract_pdf_notes:latest "Sample Book.pdf" >"Sample Book.txt"
-        ```
-
 
 Hope this was useful !!
