@@ -124,7 +124,7 @@ This method uses Vagrantfile for creating a VM for you. Which will also mount cu
 
     * To execute the script use
         ```
-        python3 extract_pdf_noptes.py 'Sample Book.pdf'
+        python3 extract_pdf_notes.py 'Sample Book.pdf'
         ``` 
 
     * The name of pdf will be argument to the script which will start printing highlighted text on commandline
@@ -139,7 +139,7 @@ This method uses Vagrantfile for creating a VM for you. Which will also mount cu
      
     * You can save the text output by redirecting it to another file e.g. 
         ```
-        python3 extract_pdf_noptes.py "Sample Book.pdf" >"Sample Book.txt"
+        python3 extract_pdf_notes.py "Sample Book.pdf" >"Sample Book.txt"
         ```
     
 
