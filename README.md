@@ -1,4 +1,4 @@
-# extract-pdf-notes
+# extract-pdf-notes  [!(https://img.shields.io/docker/cloud/automated/vsukt/extract_pdf_notes)] [!(https://img.shields.io/docker/cloud/build/vsukt/extract_pdf_notes)]
 Often times we read technical/non-technical books and do lot of highlighting on it, even add some notes like meaning of some new word or out opinion about the text. I was searching for way to getting the notes out of the PDF - there are so many options
 - Sumnotes.net (good service, but have to pay for extracting more notes)
 - existing PDF tools like Adobe Reader (have to first configure to add highlighted text to the comments before you even start highlighting), is also good but you have to pre-configure it
@@ -25,7 +25,7 @@ Here you have following ways to execute the script
 * Creating your own VM using Vagrantfile and then using the script
 
  
-## Using online docker image 
+## Using online docker image  
 To use my latest docker-image from the dockerhub. This one is easiest among the available methods.
 
 ### Requirements
@@ -67,7 +67,7 @@ To use my latest docker-image from the dockerhub. This one is easiest among the 
 ### Requirements:
 * docker installed and running (https://docs.docker.com/install/)
 
-### Building the local image
+### Building the local image 
 * clone the repo (https://www.github.com/v-sukt/extract-pdf-notes) and change to repo directory
 * then execute
 	```
