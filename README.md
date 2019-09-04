@@ -33,7 +33,7 @@ To use my latest docker-image from the dockerhub. This one is easiest among the 
 
 ### Usage
 * Navigate to the directory with the highlighted pdf. 
-* Or with docker commands, (Assuming that you have a pdf Sample Book.pdf in the current directory)
+* With docker commands, (Assuming that you have a pdf Sample Book.pdf in the current directory)
     * Start the container from the image as follows
         ```
         docker run -v "${PWD}":/notes --user $(id -u):$(id -u)  vsukt/extract_pdf_notes:latest "Sample Book.pdf"
